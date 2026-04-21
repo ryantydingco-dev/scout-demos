@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Fence By Roger — Fencing in Gaston, SC</title>
+  <meta name="description" content="Rated 4.6 stars by 17+ homeowners. Professional fencing services you can count on. Serving Gaston and surrounding areas. Call (803) 755-3183 for a free estimate.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       RESET + BASE
+       ═══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --color-bg: #0a0a0a;
+      --color-surface: #141414;
+      --color-surface-2: #1c1c1c;
+      --color-border: #2a2a2a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #999;
+      --color-text-subtle: #666;
+      --color-accent: #92400e;
+      --color-accent-hover: #78350f;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --max-width: 1200px;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      transition: background 0.3s, backdrop-filter 0.3s, padding 0.3s;
+    }
+
+    .nav.scrolled {
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__brand {
+      font-weight: 800;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav__links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover { color: var(--color-text); }
+
+    .nav__cta {
+      background: var(--color-accent);
+      color: #fff !important;
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .nav__cta:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .nav__mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(10, 10, 10, 0.92) 0%,
+        rgba(10, 10, 10, 0.75) 50%,
+        rgba(10, 10, 10, 0.5) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding: 120px 0 80px;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 32px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero__badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+    }
+
+    .hero__title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero__title em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 700;
+      color: var(--color-accent);
+    }
+
+    .hero__sub {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn--primary {
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    .btn--primary:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn--outline:hover {
+      background: var(--color-surface);
+      border-color: var(--color-text-subtle);
+    }
+
+    /* ═══════════════════════════════════════════
+       TRUST BAR
+       ═══════════════════════════════════════════ */
+    .trust-bar {
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      padding: 40px 0;
+      background: var(--color-surface);
+    }
+
+    .trust-bar__inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .trust-stat__num {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-accent);
+    }
+
+    .trust-stat__label {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT SECTION
+       ═══════════════════════════════════════════ */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section--alt {
+      background: var(--color-surface);
+    }
+
+    .section__label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+
+    .section__title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .section__title em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about__text p {
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about__details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .about__detail {
+      padding: 20px;
+      background: var(--color-surface-2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .about__detail dt {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-subtle);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .about__detail dd {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .about__image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+
+    .about__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ═══════════════════════════════════════════
+       SERVICES
+       ═══════════════════════════════════════════ */
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .service-card {
+      padding: 40px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-4px);
+    }
+
+    .service-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+    }
+
+    .service-card__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card__desc {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════════════════
+       REVIEWS
+       ═══════════════════════════════════════════ */
+    .reviews__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .review-card {
+      padding: 36px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .review-card__stars {
+      color: #f59e0b;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .review-card__quote {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--color-text-muted);
+      flex-grow: 1;
+      font-style: italic;
+    }
+
+    .review-card__author {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--color-border);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .review-card__author span {
+      display: block;
+      font-weight: 400;
+      color: var(--color-text-subtle);
+      font-size: 0.8rem;
+      margin-top: 2px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA SECTION
+       ═══════════════════════════════════════════ */
+    .cta-section {
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-section__title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .cta-section__sub {
+      color: var(--color-text-muted);
+      font-size: 1.125rem;
+      max-width: 500px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .cta-section .btn {
+      font-size: 1.125rem;
+      padding: 18px 40px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CONTACT / FOOTER
+       ═══════════════════════════════════════════ */
+    .contact {
+      padding: 80px 0;
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+    }
+
+    .contact__block h3 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-text-subtle);
+      margin-bottom: 16px;
+    }
+
+    .contact__block p,
+    .contact__block a {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .contact__block a:hover { color: var(--color-accent); }
+
+    .contact__hours {
+      list-style: none;
+    }
+
+    .contact__hours li {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .contact__hours li:last-child { border-bottom: none; }
+    .contact__hours li span:first-child { font-weight: 500; color: var(--color-text); }
+
+    .footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 0.8rem;
+      color: var(--color-text-subtle);
+    }
+
+    /* ═══════════════════════════════════════════
+       MOBILE RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav__links { display: none; }
+      .nav__mobile-toggle { display: block; }
+
+      .nav__links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .hero__content { padding: 100px 0 60px; }
+      .hero__actions { flex-direction: column; }
+      .hero__actions .btn { width: 100%; justify-content: center; }
+
+      .trust-bar__inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about__image { order: -1; aspect-ratio: 16/9; }
+
+      .services__grid { grid-template-columns: 1fr; }
+      .reviews__grid { grid-template-columns: 1fr; }
+      .contact__grid { grid-template-columns: 1fr; }
+
+      .section { padding: 64px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════ NAVIGATION ═══════ -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#" class="nav__brand">Creative Fence By Roger</a>
+      <button class="nav__mobile-toggle" onclick="document.querySelector('.nav__links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+      <ul class="nav__links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="tel:+18037553183" class="nav__cta">Call (803) 755-3183</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="https://places.googleapis.com/v1/places/ChIJQ5s-e_y_-IgRA9F_v6MC4_0/photos/AU_ZVEHtkmJy9lbWIil2tkb0i_Ci8xjnZMRlQe-x4lMoVYVkGnsowi9Mh5jvMr1_LiFK35uMHxM7QDqzDMSrG-EGmyYq3EScWG4caSlqG0LWsWoTXTj0YIaLcdiqE6kLsMq0jl0u0D4wy3NRQUV9H25sx1-ULJcoQk2BhXBnUAl_FJsAJ7i-Y038vMU9FsBn-5NQ_St4LQIquZBXEHm9zGzTuDx-zn3uzJyjwc__FeO61JSP8_AKrcWPGiqmSvsQnZl5HWiakaXLReTj428X72DZF7ail6DP2X7uw1-wz9uXTpE_d2HI83sJXWGGvUrSUuq0JFxesrMmLjfzvbO-nheoyTx3qq6D26RP4OB0UzS8qylB52jnq6_EfgOIBYreXjd3Pmw0Pxpuih4RWkHGIgxvCoZggSh8-gZ1NBCO78LNAlykfw/media?maxHeightPx=1200&maxWidthPx=1600&key=AIzaSyCjMLJRiGVlXQaaQuHqw1pFouqJuZPRs0Y" alt="Fencing services in Gaston" loading="eager">
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <div class="hero__badge">Local Family-Owned Business</div>
+      <h1 class="hero__title">
+        Trusted fencing service<br><em>in Gaston</em>
+      </h1>
+      <p class="hero__sub">Rated 4.6 stars by 17+ homeowners. Professional fencing services you can count on.</p>
+      <div class="hero__actions">
+        <a href="tel:+18037553183" class="btn btn--primary">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Get a Free Estimate
+        </a>
+        <a href="#services" class="btn btn--outline">See Our Work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ TRUST BAR ═══════ -->
+  <div class="trust-bar">
+    <div class="container trust-bar__inner">
+      <div class="trust-stat">
+        <div class="trust-stat__num">4.6</div>
+        <div class="trust-stat__label">Google Rating</div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-stat__num">17+</div>
+        <div class="trust-stat__label">Verified Reviews</div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-stat__num">Local</div>
+        <div class="trust-stat__label">Years in Business</div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-stat__num">100%</div>
+        <div class="trust-stat__label">Satisfaction Guaranteed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ ABOUT ═══════ -->
+  <section class="section" id="about">
+    <div class="container about__grid">
+      <div class="about__text">
+        <p class="section__label">About Us</p>
+        <h2 class="section__title">Your trusted fencing team in Gaston</h2>
+        <p>Creative Fence By Roger is a locally owned and operated fencing company serving Gaston and the surrounding communities. With a 4.6-star rating across 17+ Google reviews, we've built our reputation on quality work, honest pricing, and showing up when we say we will.</p>
+        <p>Whether it's a routine service call or an emergency, our team treats every job — and every home — with the same level of care and professionalism. We're licensed, insured, and committed to getting the job done right the first time.</p>
+        <dl class="about__details">
+          <div class="about__detail">
+            <dt>Service Area</dt>
+            <dd>Gaston and surrounding areas</dd>
+          </div>
+          <div class="about__detail">
+            <dt>Licensed</dt>
+            <dd>Licensed & Insured</dd>
+          </div>
+          <div class="about__detail">
+            <dt>Response Time</dt>
+            <dd>Same Day</dd>
+          </div>
+          <div class="about__detail">
+            <dt>Estimates</dt>
+            <dd>Always Free</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="about__image">
+        <img src="https://places.googleapis.com/v1/places/ChIJQ5s-e_y_-IgRA9F_v6MC4_0/photos/AU_ZVEEe7WWjhyAY8hvJ4SLsX3KtwTsaYDWTgG3j1FxcHa2USga7Vfn5fy3IcnZZXxXo3orfLfg69rZBTvIKThj6hDYsO-qcA3NKvZXTmXE_GMPswmw9-RnGPicPQ8wmaGC9JryFmAvvT7Ageu-of3gA1colsBIGloO9fztgso7CbCQQ6yJkNG_tzw5rjSkj7LqyUe2bdZeATyZIPYDENn8D0DqtfCzWIH17jH-0I1odD7S-zDcG2itHmMuHqjFJ94kOuA8ZGz451cDnLlgV0S72Rn0o-F-UnnVGEQOfr6QfrsiLn0zIV8r-LQ4IojRWG-dvE6woJ9Q7g78TmypCG9ZWtW3xvaqqt2vAraZcgzFzr2FMkPilZ4V4_Sqb0MQh_pPyDr7PQPHJNcrcK-zvP67M7mJ5qUL3QkDMDmXHJZPRV6iTvdXE/media?maxHeightPx=1200&maxWidthPx=1600&key=AIzaSyCjMLJRiGVlXQaaQuHqw1pFouqJuZPRs0Y" alt="Creative Fence By Roger team">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SERVICES ═══════ -->
+  <section class="section section--alt" id="services">
+    <div class="container">
+      <p class="section__label">What We Do</p>
+      <h2 class="section__title">Professional fencing services for your home</h2>
+      <div class="services__grid">
+        <div class="service-card">
+          <div class="service-card__icon">&#x1F3E1;</div>
+          <h3 class="service-card__title">Wood Fencing</h3>
+          <p class="service-card__desc">Privacy fences, picket fences, and custom wood designs. Built with quality lumber and hardware that stands up to the weather.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">&#x1FA93;</div>
+          <h3 class="service-card__title">Vinyl & Composite Fencing</h3>
+          <p class="service-card__desc">Low-maintenance fencing that looks great for years. No painting, no staining, no rotting — just clean lines and privacy.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">&#x1F6E1;</div>
+          <h3 class="service-card__title">Chain Link & Metal Fencing</h3>
+          <p class="service-card__desc">Affordable, durable fencing for yards, properties, and commercial sites. Galvanized or vinyl-coated options available.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">&#x1F527;</div>
+          <h3 class="service-card__title">Fence Repair</h3>
+          <p class="service-card__desc">Leaning posts, broken panels, sagging gates — we repair and reinforce existing fences so you don't have to replace the whole thing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ REVIEWS ═══════ -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <p class="section__label">What Our Customers Say</p>
+      <h2 class="section__title">Real reviews from <em>real homeowners</em></h2>
+      <div class="reviews__grid">
+        <div class="review-card">
+          <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-card__quote">"Hey everyone, this is an old business page that we are locked out of. Our new page is Creative Fence that will come up under this one. Please consider writing a review on that page! Thank you all!"</p>
+          <div class="review-card__author">
+            Carley B.
+            <span>Google Review</span>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-card__quote">"I recently had the pleasure of working with Creative Fence Company, and I couldn't be happier with the results! From start to finish, the experience was seamless and professional.
+
+The team was inc..."</p>
+          <div class="review-card__author">
+            Dawn F.
+            <span>Google Review</span>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-card__quote">"They didn't communicate with me. I could not get anyone to answer my phone calls or text messages after I gave them a check for half the cost of the job. They just showed up one day unannounced to ..."</p>
+          <div class="review-card__author">
+            Matthew J.
+            <span>Google Review</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title">Ready to get started?</h2>
+      <p class="cta-section__sub">Call us today for a free estimate. No hidden fees, no pressure — just honest fencing service from a team that cares about doing the job right.</p>
+      <a href="tel:+18037553183" class="btn btn--primary">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call (803) 755-3183
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════ CONTACT + HOURS ═══════ -->
+  <section class="contact" id="contact">
+    <div class="container contact__grid">
+      <div class="contact__block">
+        <h3>Get in Touch</h3>
+        <p>
+          <strong>Creative Fence By Roger</strong><br>
+          <a href="tel:+18037553183">(803) 755-3183</a><br><br>
+          <a href="https://maps.google.com/?cid=18294469013624836355&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA" target="_blank" rel="noopener">
+            306 Kimmey Rd<br>
+            Gaston, SC 29053
+          </a>
+        </p>
+      </div>
+      <div class="contact__block">
+        <h3>Business Hours</h3>
+        <ul class="contact__hours">
+          <li><span>Monday</span><span>8:00 AM - 5:00 PM</span></li>
+          <li><span>Tuesday</span><span>8:00 AM - 5:00 PM</span></li>
+          <li><span>Wednesday</span><span>8:00 AM - 5:00 PM</span></li>
+          <li><span>Thursday</span><span>8:00 AM - 5:00 PM</span></li>
+          <li><span>Friday</span><span>8:00 AM - 5:00 PM</span></li>
+          <li><span>Saturday</span><span>Closed</span></li>
+          <li><span>Sunday</span><span>Closed</span></li>
+        </ul>
+      </div>
+      <div class="contact__block">
+        <h3>Service Area</h3>
+        <p>Proudly serving Gaston and surrounding areas and surrounding communities.</p>
+        <br>
+        <p><a href="https://maps.google.com/?cid=18294469013624836355&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA" target="_blank" rel="noopener" class="btn btn--outline" style="font-size: 0.875rem; padding: 12px 24px;">View on Google Maps</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Creative Fence By Roger. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ═══════ SCRIPTS ═══════ -->
+  <script>
+    // Scroll-aware nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav__links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav__links').classList.remove('open');
+      });
+    });
+
+    // Smooth reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.service-card, .review-card, .about__detail').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
